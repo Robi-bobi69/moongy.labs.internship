@@ -2,7 +2,7 @@
 {
     public class OrganizationRepresentative
     {
-        public int OrgRepId { get; set; }
+        public int OrganizationRepresentativeId { get; set; }
         public int OrganizationId { get; set; }
 
         public string FirstName { get; set; } = string.Empty;

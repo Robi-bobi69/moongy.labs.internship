@@ -2,7 +2,7 @@
 {
     public class SchoolRepresentative
     {
-        public int SchoolRepId { get; set; }
+        public int SchoolRepresentativeId { get; set; }
         public int SchoolId { get; set; }
 
         public string FirstName { get; set; } = string.Empty;

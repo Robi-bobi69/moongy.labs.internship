@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using moongy.labs.internships.DataAccess;
 
 namespace moongy.labs.internships.Controllers
 {
@@ -6,6 +7,13 @@ namespace moongy.labs.internships.Controllers
     [Route("[controller]")]
     public class HomeController : ControllerBase
     {
+        //testing database
+        private readonly AppDbContext _context;
+        public HomeController(AppDbContext context)
+        {
+            _context = context;
+        }
+        //
         [HttpGet("GetInt")]
         public int Get()
         {
@@ -16,6 +24,13 @@ namespace moongy.labs.internships.Controllers
         {
             return 200;
 
+        }
+        //
+        [HttpGet("TestDb")]
+        public IActionResult TestDb()
+        {
+            var canConnect = _context.Database.CanConnect();
+            return Ok(canConnect);
         }
     }
 }
