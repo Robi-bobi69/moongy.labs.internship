@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="moongy.labs.internships.Buisness/moongy.labs.internships.Buisness.csproj" Id="021cd6ce-86a1-4aab-a9b7-7af2d7464371" />
+  <Project Path="moongy.labs.internships.DataAccess/moongy.labs.internships.DataAccess.csproj" Id="130f89cc-548c-4d63-9906-64d807cf4a3a" />
+  <Project Path="moongy.labs.internships.domain/moongy.labs.internships.Domain.csproj" Id="e458e076-f190-4af7-86c3-420c4cd10100" />
+  <Project Path="moongy.labs.internships/moongy.labs.internships.csproj" Id="677cf230-0c7a-4080-9a68-80315c4e57f4" />
+</Solution>

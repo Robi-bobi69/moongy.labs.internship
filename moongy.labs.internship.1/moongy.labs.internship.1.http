@@ -1,0 +1,6 @@
+@moongy.labs.internship._1_HostAddress = http://localhost:5264
+
+GET {{moongy.labs.internship._1_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
