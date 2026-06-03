@@ -13,24 +13,19 @@ namespace moongy.labs.internships.Controllers
         {
             _context = context;
         }
-        //
-        [HttpGet("GetInt")]
-        public int Get()
-        {
-            return 100;
-        }
-        [HttpGet ("GetInt2")]
-        public int get2()
-        {
-            return 200;
 
-        }
-        //
         [HttpGet("TestDb")]
         public IActionResult TestDb()
         {
             var canConnect = _context.Database.CanConnect();
-            return Ok(canConnect);
+            return Ok($"Database connected: {canConnect}");
+        }
+
+        [HttpGet("GetInternships")]
+        public IActionResult GetInternships()
+        {
+            var internships = _context.Mentor.ToList();
+            return Ok(internships);
         }
     }
 }

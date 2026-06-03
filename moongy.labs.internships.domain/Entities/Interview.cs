@@ -3,7 +3,7 @@
     public class Interview
     {
         public int InterviewId { get; set; }
-
+        public int InternshipId { get; set; }
         public int InternId { get; set; }
         public int MentorId { get; set; }
 

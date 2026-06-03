@@ -6,11 +6,10 @@ namespace moongy.labs.internships.Domain.Entities
 {
     public class Internship
     {
-        public int Id { get; set; }
-        public string Title { get; set; } = string.Empty;
-        public string Company { get; set; } = string.Empty;
+        public int InternshipId { get; set; }
+        public int OrganizationId { get; set; }
+        public int PartnerId { get; set; }
+        public int SchoolId { get; set; }
         public string Description { get; set; } = string.Empty;
-        
-        
     }
 }

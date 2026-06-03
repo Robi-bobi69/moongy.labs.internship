@@ -9,16 +9,16 @@ namespace moongy.labs.internships.DataAccess
     public class AppDbContext : DbContext
     {
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
-
-        public DbSet<Intern> Interns { get; set; }
-        public DbSet<Internship> Internships { get; set; }
-        public DbSet<Interview> Interviews { get; set; }
-        public DbSet<Mentor> Mentors { get; set; }
-        public DbSet<Organization> Organisations { get; set; }
-        public DbSet<OrganizationRepresentative> OrganisationRepresentatives { get; set; }
-        public DbSet<Partner> Partners { get; set; }
-        public DbSet<PartnerRepresentative> PartnerRepresentatives { get; set; }
-        public DbSet<School> Schools { get; set; }
-        public DbSet<SchoolRepresentative> SchoolRepresentatives { get; set; }
+        public DbSet<Intern> Intern { get; set; }
+        public DbSet<Internship> Internship { get; set; }
+        public DbSet<Interview> Interview { get; set; }
+        public DbSet<Mentor> Mentor { get; set; }
+        public DbSet<Organization> Organization { get; set; }
+        public DbSet<OrganizationRepresentative> OrganizationRepresentative { get; set; }
+        public DbSet<Partner> Partner { get; set; }
+        public DbSet<PartnerRepresentative> PartnerRepresentative { get; set; }
+        public DbSet<School> School { get; set; }
+        public DbSet<SchoolRepresentative> SchoolRepresentative { get; set; }
     }
+
 }
