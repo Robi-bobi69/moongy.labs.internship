@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using moongy.labs.internships.DataAccess;
+using moongy.labs.internships.Domain.Entities;
 
 namespace moongy.labs.internships.Controllers
 {
@@ -79,6 +80,88 @@ namespace moongy.labs.internships.Controllers
         public IActionResult GetSchoolRepresentatives()
         {
             return Ok(_context.SchoolRepresentative.ToList());
+        }
+
+        //ADDING
+
+        [HttpPost("AddIntern")]
+        public IActionResult AddIntern([FromBody] Intern intern)
+        {
+            _context.Intern.Add(intern);
+            _context.SaveChanges();
+            return Ok(intern);
+        }
+
+        [HttpPost("AddInternship")]
+        public IActionResult AddInternship([FromBody] Internship internship)
+        {
+            _context.Internship.Add(internship);
+            _context.SaveChanges();
+            return Ok(internship);
+        }
+
+        [HttpPost("AddInterview")]
+        public IActionResult AddInterview([FromBody] Interview interview)
+        {
+            _context.Interview.Add(interview);
+            _context.SaveChanges();
+            return Ok(interview);
+        }
+
+        [HttpPost("AddMentor")]
+        public IActionResult AddMentor([FromBody] Mentor mentor)
+        {
+            _context.Mentor.Add(mentor);
+            _context.SaveChanges();
+            return Ok(mentor);
+        }
+
+        [HttpPost("AddOrganization")]
+        public IActionResult AddOrganization([FromBody] Organization organization)
+        {
+            _context.Organization.Add(organization);
+            _context.SaveChanges();
+            return Ok(organization);
+        }
+
+        [HttpPost("AddOrganizationRepresentative")]
+        public IActionResult AddOrganizationRepresentative([FromBody] OrganizationRepresentative rep)
+        {
+            _context.OrganizationRepresentative.Add(rep);
+            _context.SaveChanges();
+            return Ok(rep);
+        }
+
+        [HttpPost("AddPartner")]
+        public IActionResult AddPartner([FromBody] Partner partner)
+        {
+            _context.Partner.Add(partner);
+            _context.SaveChanges();
+            return Ok(partner);
+        }
+
+        [HttpPost("AddPartnerRepresentative")]
+        public IActionResult AddPartnerRepresentative([FromBody] PartnerRepresentative rep)
+        {
+            _context.PartnerRepresentative.Add(rep);
+            _context.SaveChanges();
+            return Ok(rep);
+        }
+
+        [HttpPost("AddSchool")]
+        public IActionResult AddSchool([FromBody] School school)
+        {
+            _context.School.Add(school);
+            _context.SaveChanges();
+            return Ok(school);
+        }
+
+        [HttpPost("AddSchoolRepresentative")]
+        public IActionResult AddSchoolRepresentative([FromBody] SchoolRepresentative rep)
+        {
+            _context.SchoolRepresentative.Add(rep);
+            _context.SaveChanges();
+            return Ok(rep);
         }
     }
 }
