@@ -7,11 +7,18 @@ namespace moongy.labs.internships.Controllers
     [Route("[controller]")]
     public class HomeController : ControllerBase
     {
-        //testing database
         private readonly AppDbContext _context;
+
         public HomeController(AppDbContext context)
         {
             _context = context;
+        }
+
+        [HttpGet("TestDb")]
+        public IActionResult TestDb()
+        {
+            var canConnect = _context.Database.CanConnect();
+            return Ok($"Database connected: {canConnect}");
         }
 
         [HttpGet("GetInterns")]
@@ -41,13 +48,13 @@ namespace moongy.labs.internships.Controllers
         [HttpGet("GetOrganizations")]
         public IActionResult GetOrganizations()
         {
-            return Ok(_context.Organisation.ToList());
+            return Ok(_context.Organization.ToList());
         }
 
         [HttpGet("GetOrganizationRepresentatives")]
         public IActionResult GetOrganizationRepresentatives()
         {
-            return Ok(_context.OrganisationRepresentative.ToList());
+            return Ok(_context.OrganizationRepresentative.ToList());
         }
 
         [HttpGet("GetPartners")]
