@@ -13,7 +13,7 @@ function Home() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch("https://192.168.1.137:7226/home/getmentor")
+    fetch("https://localhost:7226/home/getmentor")
       .then((response) => {
         console.log("Status:", response.status);
         return response.json();
