@@ -21,8 +21,8 @@ namespace moongy.labs.internships.Controllers
             return Ok($"Database connected: {canConnect}");
         }
 
-        [HttpGet("GetInternships")]
-        public IActionResult GetInternships()
+        [HttpGet("GetMentor")]
+        public IActionResult GetMentor()
         {
             var internships = _context.Mentor.ToList();
             return Ok(internships);
