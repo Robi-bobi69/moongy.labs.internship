@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { Box, Flex, Text, Input, Button } from "@chakra-ui/react";
 
-const API = "https://localhost:7226/home";
 
 const ENTITIES = {
   Intern: {
