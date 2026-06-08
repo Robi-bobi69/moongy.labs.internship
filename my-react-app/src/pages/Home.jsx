@@ -1,4 +1,5 @@
 import Navbar from "../components/Navbar";
+import EntityInserter from "../components/EntityInserter";
 import { useEffect, useState } from "react";
 import { Box, Heading, Text, Stack, Card, Separator, Flex, Input, Button } from "@chakra-ui/react";
 
@@ -108,105 +109,6 @@ function EmptyOrLoading({ loading }) {
   return <Text color="gray.500">{loading ? "Loading..." : "No records found."}</Text>;
 }
 
-// ── INSERTER ─────────────────────────────────────────────────────────────────
-function EntityInserter({ onInserted }) {
-  const [selected, setSelected] = useState(null);
-  const [dropdownOpen, setDropdownOpen] = useState(false);
-  const [values, setValues] = useState({});
-  const [status, setStatus] = useState(null);
-
-  const entity = selected ? ENTITIES[selected] : null;
-
-  const isValid =
-    entity &&
-    entity.fields.every((f) => {
-      const v = values[f.key];
-      if (!v && v !== 0) return false;
-      if (f.type === "number") return !isNaN(Number(v)) && v !== "";
-      return v.trim() !== "";
-    });
-
-  const handleSelect = (name) => {
-    setSelected(name);
-    setDropdownOpen(false);
-    setValues({});
-    setStatus(null);
-  };
-
-  const handleChange = (key, value) => {
-    setValues((prev) => ({ ...prev, [key]: value }));
-    setStatus(null);
-  };
-
-  const handleSubmit = async () => {
-    if (!isValid) return;
-    const payload = {};
-    entity.fields.forEach((f) => {
-      payload[f.key] = f.type === "number" ? Number(values[f.key]) : values[f.key];
-    });
-    try {
-      const res = await fetch(`${API}/${entity.endpoint}`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload),
-      });
-      if (res.ok) {
-        setStatus("success");
-        setValues({});
-        if (onInserted) onInserted();
-      } else {
-        setStatus("error");
-      }
-    } catch {
-      setStatus("error");
-    }
-  };
-
-  return (
-    <Box mb="10">
-      <Flex align="flex-end" gap="4" wrap="wrap">
-        {/* Dropdown */}
-        <Box position="relative">
-          <Text fontSize="xs" mb="1" color="gray.500">Entity</Text>
-          <Button variant="outline" onClick={() => setDropdownOpen((o) => !o)} minW="200px" justifyContent="space-between">
-            {selected ?? "Select entity"} ▾
-          </Button>
-          {dropdownOpen && (
-            <Box position="absolute" top="100%" left="0" mt="1" bg="white" border="1px solid" borderColor="gray.200" borderRadius="md" zIndex="10" minW="200px" boxShadow="md">
-              {Object.keys(ENTITIES).map((name) => (
-                <Box key={name} px="4" py="2" cursor="pointer" color="black" _hover={{ bg: "gray.100" }} onClick={() => handleSelect(name)}>
-                  {name}
-                </Box>
-              ))}
-            </Box>
-          )}
-        </Box>
-
-        {/* Fields */}
-        {entity && entity.fields.map((f) => (
-          <Box key={f.key}>
-            <Text fontSize="xs" mb="1" color="gray.500">{f.label}</Text>
-            <Input
-              placeholder={`${f.label}...`}
-              type={f.type === "number" ? "number" : f.type === "date" ? "date" : "text"}
-              value={values[f.key] ?? ""}
-              onChange={(e) => handleChange(f.key, e.target.value)}
-              w="140px"
-            />
-          </Box>
-        ))}
-
-        {/* Add button */}
-        {entity && (
-          <Button colorScheme="blue" disabled={!isValid} onClick={handleSubmit}>+</Button>
-        )}
-      </Flex>
-
-      {status === "success" && <Text color="green.500" mt="2">Record added successfully.</Text>}
-      {status === "error" && <Text color="red.500" mt="2">Something went wrong. Check your IDs and try again.</Text>}
-    </Box>
-  );
-}
 
 // ── HOME PAGE ─────────────────────────────────────────────────────────────────
 function Home() {
@@ -225,10 +127,8 @@ function Home() {
     <Box p="8">
       <Navbar />
 
-      {/* ── INSERTER - sits between Navbar and the viewer below ── */}
+     
       <EntityInserter onInserted={() => window.location.reload()} />
-
-      {/* ── DATABASE VIEWER - your existing code below, unchanged ── */}
 
       {/* Interns */}
       <EntitySection title="Interns">
